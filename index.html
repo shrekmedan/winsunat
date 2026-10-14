@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="5; url=https://github.com/shrekmedan/WinSunat/releases/latest">
+    <title>Loading...</title>
+</head>
+<body>
+	Loading... If already downloaded you can close the tab
+    <script>
+        (async () => {
+            const fallback = "https://github.com/shrekmedan/WinSunat/releases/latest";
+            try {
+                const res = await fetch("https://api.github.com/repos/shrekmedan/WinSunat/releases/latest");
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.assets && data.assets.length > 0) {
+                        const a = document.createElement("a");
+                        a.href = data.assets[0].browser_download_url;
+                        a.download = data.assets[0].name;
+                        document.body.appendChild(a);
+                        a.click();
+                        
+                        setTimeout(() => {
+                            try {
+                                window.open('', '_self', '');
+                                window.close();
+                            } catch (_) {}
+                            try {
+                                self.close();
+                            } catch (_) {}
+                        }, 500);
+                        return;
+                    } else if (data.html_url) {
+                        location.replace(data.html_url);
+                        return;
+                    }
+                }
+            } catch (_) {}
+            location.replace(fallback);
+        })();
+    </script>
+</body>
+</html>
