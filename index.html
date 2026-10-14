@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="5; url=https://github.com/shrekmedan/WinSunat/releases/latest">
-    <title>Loading...</title>
+    <noscript>
+        <meta http-equiv="refresh" content="5; url=https://github.com/shrekmedan/WinSunat/releases/latest">
+    </noscript>
+    <title>WinSunat</title>
 </head>
 <body>
-	Loading... If already downloaded you can close the tab
+    Loading... If already downloaded you can close the tab.
     <script>
         (async () => {
             const fallback = "https://github.com/shrekmedan/WinSunat/releases/latest";
@@ -21,16 +23,6 @@
                         a.download = data.assets[0].name;
                         document.body.appendChild(a);
                         a.click();
-                        
-                        setTimeout(() => {
-                            try {
-                                window.open('', '_self', '');
-                                window.close();
-                            } catch (_) {}
-                            try {
-                                self.close();
-                            } catch (_) {}
-                        }, 500);
                         return;
                     } else if (data.html_url) {
                         location.replace(data.html_url);
